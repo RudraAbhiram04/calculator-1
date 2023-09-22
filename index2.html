@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+        .custom-calculator {
+            background-color: #fff;
+            border-radius: 0.8vh;
+            box-shadow: 0 0 1vh rgba(0, 0, 0, 0.1);
+            padding: 2vh;
+            text-align: center;
+        }
+
+        #custom-display {
+            width: 92.5%;
+            margin-bottom: 1vh;
+            padding: 1vh;
+            font-size: 2.4vh;
+            text-align: right;
+            border-style: groove;
+        }
+
+        .custom-buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1vh;
+        }
+
+        .custom-button {
+            padding: 1vh;
+            font-size: 1.8vh;
+            border: none;
+            background-color: #eee;
+            cursor: pointer;
+        }
+
+        .custom-number {
+            background-color: skyblue;
+        }
+
+        .custom-operator, .custom-equals {
+            background-color: #f8ca4d;
+        }
+
+        .custom-clear {
+            background-color: #f87f7f;
+        }
+    </style>
+    <title>Custom Calculator</title>
+</head>
+<body>
+    <div class="custom-calculator">
+        <input type="text" id="custom-display" disabled>
+        <div class="custom-buttons">
+            <button class="custom-number" onclick="appendToCustomDisplay('7')">7</button>
+            <button class="custom-number" onclick="appendToCustomDisplay('8')">8</button>
+            <button class="custom-number" onclick="appendToCustomDisplay('9')">9</button>
+            <button class="custom-operator" onclick="appendToCustomDisplay('+')">+</button>
+            <button class="custom-number" onclick="appendToCustomDisplay('4')">4</button>
+            <button class="custom-number" onclick="appendToCustomDisplay('5')">5</button>
+            <button class="custom-number" onclick="appendToCustomDisplay('6')">6</button>
+            <button class="custom-operator" onclick="appendToCustomDisplay('-')">-</button>
+            <button class="custom-number" onclick="appendToCustomDisplay('1')">1</button>
+            <button class="custom-number" onclick="appendToCustomDisplay('2')">2</button>
+            <button class="custom-number" onclick="appendToCustomDisplay('3')">3</button>
+            <button class="custom-operator" onclick="appendToCustomDisplay('*')">*</button>
+            <button class="custom-clear" onclick="clearCustomDisplay()">C</button>
+            <button class="custom-number" onclick="appendToCustomDisplay('0')">0</button>
+            <button class="custom-equals" onclick="calculateCustom()">=</button>
+            <button class="custom-operator" onclick="appendToCustomDisplay('/')">/</button>
+        </div>
+    </div>
+    <script>
+        let customDisplay = document.getElementById("custom-display");
+        let customCurrentInput = "";
+
+        function appendToCustomDisplay(value) {
+            customCurrentInput += value;
+            customDisplay.value = customCurrentInput;
+        }
+
+        function clearCustomDisplay() {
+            customCurrentInput = "";
+            customDisplay.value = "";
+        }
+
+        function calculateCustom() {
+            try {
+                customCurrentInput = eval(customCurrentInput).toString();
+                customDisplay.value = customCurrentInput;
+            } catch (error) {
+                customDisplay.value = "Error";
+            }
+        }
+    </script>
+</body>
+</html>
